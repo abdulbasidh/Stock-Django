@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
-from app.views import login, LoginAction, DashboardView, logout, loginError
+from app.views import login, LoginAction, DashboardView, logout, loginError, ProductsView, addProducts, addProductsAction, prodConfirm, show
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +25,9 @@ urlpatterns = [
     url(r'^loginError/$', loginError, name='loginError'),
     url(r'^logout/$', logout, name='Logout'),
     path('dashboard/', DashboardView, name="Dashboard"),
+    path('products/', ProductsView, name="Products"),
+    path('add-products/', addProducts, name="addProducts"),
+    path('add-products-action/', addProductsAction, name="addProductsAction"),
+    path('prodConfirm/', prodConfirm, name="prodConfirm"),
+    path('show/', show, name="show"),
 ]

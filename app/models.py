@@ -23,3 +23,14 @@ class Session(models.Model):
     class Meta:
         managed = False
         db_table = 'session'
+
+class Products(models.Model):
+    product_id = models.CharField(max_length=10)
+    prod_name = models.CharField(max_length=50)
+    qty = models.IntegerField()
+    tot_price = models.IntegerField()
+    seller = models.CharField(max_length=50)
+
+    class Meta:
+        managed = False
+        db_table = 'products'

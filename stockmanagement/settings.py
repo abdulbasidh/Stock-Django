@@ -96,7 +96,8 @@ DATABASES = {
         },
         'applications': [
             'app.Users',
-            'app.Session'
+            'app.Session',
+            'app.Products'
         ]
     },
     'default': {

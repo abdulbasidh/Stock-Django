@@ -1,14 +1,48 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!doctype html>
+<html lang="en">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Stock Management</title>
+
+<link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+	  #link {
+		text-decoration:none;
+		color: white;
+	  }
+    </style>
+
+    <link href="{% static 'assets/dist/css/style.css' %}" rel="stylesheet">
   </head>
-  <body>
-    <p>Token: {{ ses }}</p>
-    <p>Email: {{ email }}</p>
-    <p>Username: {{ username }}</p>
-    <p><a href="/logout/?ses={{ ses }}">Logout</a></p>
+  <body class="text-center">
+
+<main class="form-signin">
+
+    <a id="link" href="/products/"><button class="w-100 btn btn-lg btn-primary" type="submit">Products</button></a>
+	<br><br>
+	<a id="link" href="#"><button class="w-100 btn btn-lg btn-primary" type="submit">Sellers</button></a>
+	<br><br>
+	<a id="link" href="#"><button class="w-100 btn btn-lg btn-primary" type="submit">Settings</button></a>
+	<br><br>
+	<a id="link" href="/logout/"><button class="w-100 btn btn-lg btn-danger" type="submit">Logout</button></a>
+</main>
+
   </body>
 </html>

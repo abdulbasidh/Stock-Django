@@ -34,3 +34,13 @@ class Products(models.Model):
     class Meta:
         managed = False
         db_table = 'products'
+
+class Supplier(models.Model):
+    supplier_id = models.CharField(max_length=10)
+    sup_name = models.CharField(max_length=50)
+    address = models.CharField(max_length=250)
+    phone = models.IntegerField()
+
+    class Meta:
+        managed = False
+        db_table = 'supplier'

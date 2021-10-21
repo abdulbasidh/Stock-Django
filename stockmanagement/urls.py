@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
-from app.views import login, LoginAction, DashboardView, logout, loginError, ProductsView, addProducts, addProductsAction, prodConfirm, show
+from app.views import login, LoginAction, DashboardView, logout, loginError, ProductsView, addProducts, addProductsAction, prodConfirm, prodDelete, prodEdit, editProductsAction, supplierView, addSupplier, addSupplierAction, supplierConfirm, supplierDelete, supplierEdit, editSupplierAction, settingsView, settingsAction, settingsConfirm, cpassView, cpassAction, show
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -29,5 +29,25 @@ urlpatterns = [
     path('add-products/', addProducts, name="addProducts"),
     path('add-products-action/', addProductsAction, name="addProductsAction"),
     path('prodConfirm/', prodConfirm, name="prodConfirm"),
+    path('prodEdit/', prodEdit, name="prodEdit"),
+    path('editProductsAction/', editProductsAction, name="editProductsAction"),
+    path('prodDelete/', prodDelete, name="prodDelete"),
+
+    path('seller/', supplierView, name="Seller"),
+    path('addSupplier/', addSupplier, name="addSellers"),
+    path('addSupplierAction/', addSupplierAction, name="addSupplierAction"),
+    path('supplierConfirm/', supplierConfirm, name="supplierConfirm"),
+    path('supplierDelete/', supplierDelete, name="supplierDelete"),
+    path('supplierEdit/', supplierEdit, name="prodEdit"),
+    path('editSupplierAction/', editSupplierAction, name="editSupplierAction"),
+
+
+    path('settings/', settingsView, name="Settings"),
+    path('settingsAction/', settingsAction, name="settingsAction"),
+    path('settingsConfirm/', settingsConfirm, name="settingsConfirm"),
+
+    path('password/', cpassView, name="Password"),
+    path('cpassAction/', cpassAction, name="cpassAction"),
+
     path('show/', show, name="show"),
 ]

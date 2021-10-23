@@ -201,7 +201,7 @@ def prodEdit(request):
         if Session.objects.filter(token=ses).exists():
             if Session.objects.filter(status="active").exists():
                 id = request.GET['id']
-                products = Products.objects.all()
+                products = Products.objects.filter(product_id=id)
                 context = {
                 "products": products,
                 "ses": ses,

@@ -523,3 +523,40 @@ def logout(request):
         response = redirect('/login/')
         return response
     return render(request, "login.html")
+
+def shop(request):
+    products = Products.objects.all()
+    context= {'products': products}
+    return render(request, "shop.html", context)
+
+def buy(request):
+    id = request.GET['id']
+    products = Products.objects.filter(product_id=id)
+    context= {'products': products}
+    return render(request, "buy.html", context)
+
+def buyaction(request):
+    id = request.POST.get('prodid', False);
+    qty = request.POST.get('buyqty', False);
+    avaqty = request.POST.get('avaqty', False);
+    qty = int(qty)
+    avaqty = int(avaqty)
+    available = avaqty-qty
+    products = Products.objects.all()
+    if(available<0):
+        context = {
+        "statusupdated": "Entered qty is greater than available qty.!",
+        "products": products,
+        }
+        return render(request, "shop.html", context)
+        return response
+    else:
+        Products.objects.filter(product_id=id).update(qty=available)
+        context = {
+        "status": "Product purchased successfully!",
+        "products": products,
+        }
+        return render(request, "shop.html", context)
+        return response
+
+    return render(request, "shop.html")

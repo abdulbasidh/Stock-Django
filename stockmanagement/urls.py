@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
-from app.views import login, LoginAction, DashboardView, logout, loginError, ProductsView, addProducts, addProductsAction, prodConfirm, prodDelete, prodEdit, editProductsAction, supplierView, addSupplier, addSupplierAction, supplierConfirm, supplierDelete, supplierEdit, editSupplierAction, settingsView, settingsAction, settingsConfirm, cpassView, cpassAction, show
+from app.views import login, LoginAction, DashboardView, logout, loginError, ProductsView, addProducts, addProductsAction, prodConfirm, prodDelete, prodEdit, editProductsAction, supplierView, addSupplier, addSupplierAction, supplierConfirm, supplierDelete, supplierEdit, editSupplierAction, settingsView, settingsAction, settingsConfirm, cpassView, cpassAction, show, shop, buy, buyaction
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -49,5 +49,7 @@ urlpatterns = [
     path('password/', cpassView, name="Password"),
     path('cpassAction/', cpassAction, name="cpassAction"),
 
-    path('show/', show, name="show"),
+    path('shop/', shop, name="shop"),
+    path('buy/', buy, name="buy"),
+    path('buyaction/', buyaction, name="buyaction"),
 ]

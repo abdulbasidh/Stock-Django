@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/style.css">
+
+    <title>Edit Products</title>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+  <div class="col">
+  <br><br>
+  <center>
+  <h3>Buy Products</h3>
+  </center>
+  </div>
+  </div>
+
+  <div class="row" align="center">
+  <div class="col">
+
+<form name="form" method="post" action="/buyaction/">
+  {% csrf_token %}
+  {% for i in products %}
+
+<div class="form-group">
+<input type="hidden" value="{{ i.product_id }}" name="" placeholder="Product Id" disabled class="form-control w-50" />
+<input type="hidden" value="{{ i.product_id }}" name="prodid" placeholder="Product Id" class="form-control w-50" />
+</div>
+
+<div class="form-group">
+<input type="text" disabled value="{{ i.prod_name }}" name="prodname" placeholder="Product Name" required class="form-control w-50" />
+</div>
+
+<div class="form-group">
+<input type="hidden" value="{{ i.qty }}" name="avaqty" placeholder="Quantity" required class="form-control w-50" />
+<input type="text" disabled value="Available: {{ i.qty }}" name="" placeholder="Quantity" required class="form-control w-50" />
+</div>
+
+<div class="form-group">
+<input type="text" disabled value="Price: {{ i.tot_price }}" name="price" placeholder="price " required class="form-control w-50" />
+</div>
+
+<div class="form-group">
+<input type="number" name="buyqty" placeholder="Quantity" required class="form-control w-50" />
+</div>
+
+{% endfor %}
+<input name="submit" type="submit" value="Buy Now" class="btn btn-primary" />
+</form>
+<br /><br /><br />
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+<body>
+  <table border="1" width="600">
+  <tr>
+  <td>prod id</td>
+  <td>prod name</td>
+  <td>qty</td>
+  <td>tot</td>
+  <td>seller</td>
+  </tr>
+
+  {% for i in products %}
+  <tr>
+  <td>{{i.product_id}}</td>
+  <td>{{i.prod_name}}</td>
+  <td>{{i.qty}}</td>
+  <td>{{i.tot_price}}</td>
+  <td>{{i.seller}}</td>
+  </tr>
+  {% endfor %}
+  </table>
+</body>
+</html>

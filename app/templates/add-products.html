@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'assets/dist/css/style.css' %}">
+
+    <title>Add Products</title>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+  <div class="col">
+  <br><br>
+  <center>
+  <h3>Add Products</h3>
+  </center>
+  </div>
+  </div>
+
+  <div class="row" align="center">
+  <div class="col">
+
+<form name="form" method="post" action="/add-products-action/">
+{% csrf_token %}
+<p>{{ status }}</p>
+<div class="form-group">
+</div>
+<div class="form-group">
+<input name="prodname" type="text" placeholder="Product Name" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" name="prodqty" placeholder="Quantity" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" name="prodprice" placeholder="price " required class="form-control w-50" />
+</div>
+<div class="form-group">
+<select name="prodseller" class="form-control w-50" aria-label="Default select example">
+  <option selected>Select Supplier</option>
+  <option value="Supplier 1">Supplier 1</option>
+  <option value="Supplier 2">Supplier 2</option>
+  <option value="Supplier 3">Supplier 3</option>
+</select>
+</div>
+
+
+
+<input name="submit" type="submit" value="Submit" class="btn btn-primary" />
+</form>
+<br />
+<p style="text-decoration:none;color:grey;">Back to <a style="text-decoration:none;color:grey;" href="/products/?ses={{ ses }}"><b>Products</b></a> or <a style="text-decoration:none;color:grey;" href="/dashboard?ses={{ ses }}"><b>Dashboard</b></a></p>
+<br /><br /><br />
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

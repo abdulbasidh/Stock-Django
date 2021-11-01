@@ -157,3 +157,12 @@ DATABASES['db1']['ENGINE'] = "django.db.backends.mysql"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+DEFAULT_FROM_EMAIL = 'mohammedabdulbasidh41iicsea@gmail.com'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'mohammedabdulbasidh41iicsea@gmail.com'
+EMAIL_HOST_PASSWORD = 'Basidh728'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True

@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/style.css">
+
+    <title>Edit Products</title>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+  <div class="col">
+  <br><br>
+  <center>
+  <h3>Edit Products</h3>
+  </center>
+  </div>
+  </div>
+
+  <div class="row" align="center">
+  <div class="col">
+
+<form name="form" method="post" action="/editProductsAction/">
+  {% csrf_token %}
+  {% for i in products %}
+<div class="form-group">
+<input type="text" value="{{ i.product_id }}" name="" placeholder="Product Id" disabled class="form-control w-50" />
+<input type="hidden" value="{{ i.product_id }}" name="prodid" placeholder="Product Id" class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" value="{{ i.prod_name }}" name="prodname" placeholder="Product Name" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" value="{{ i.qty }}" name="qty" placeholder="Quantity" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" value="{{ i.tot_price }}" name="price" placeholder="price " required class="form-control w-50" />
+</div>
+<div class="form-group">
+<select name="seller" value="{{ i.seller }}" class="form-control w-50" aria-label="Default select example">
+  <option selected>Select Seller</option>
+  <option value="Supplier 1">Supplier 1</option>
+  <option value="Supplier 2">Supplier 2</option>
+  <option value="Supplier 3">Supplier 3</option>
+</select>
+</div>
+{% endfor %}
+<input name="submit" type="submit" value="Submit" class="btn btn-primary" />
+</form>
+<br />
+<p style="text-decoration:none;color:grey;">Back to <a style="text-decoration:none;color:grey;" href="/products/"><b>Products</b></a> or <a style="text-decoration:none;color:grey;" href="/dashboard/"><b>Dashboard</b></a></p>
+<br /><br /><br />
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

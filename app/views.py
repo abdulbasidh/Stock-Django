@@ -8,6 +8,7 @@ from .serializers import UsersSerializer, SessionSerializer, ProductsSerializer,
 import hashlib
 import string
 import random
+from django.core.mail import send_mail
 
 def login(request):
     try:
@@ -443,6 +444,7 @@ def settingsAction(request):
     email = request.POST.get('email', False);
 
     Users.objects.filter(id=id).update(id=id,username=username,email=email)
+    Session.objects.filter(token=ses).update(email=email)
 
     status="Updated Successfully"
     response = redirect('/settingsConfirm/?status='+status)
@@ -560,3 +562,84 @@ def buyaction(request):
         return response
 
     return render(request, "shop.html")
+
+def fpassword(request):
+    return render(request, "fpassword.html")
+
+def fpassAction(request):
+    email = request.POST.get('email', False);
+    if Users.objects.filter(email=email).exists():
+        otp = ''.join(random.sample('0123456789', 4))
+        password_gen = hashlib.sha256(otp.encode())
+        encryppass=password_gen.hexdigest()
+        otpstr = str(otp)
+        message="otp is: "+otpstr
+        send_mail(
+        'Password Changing Request',
+        message,
+        'mohammedabdulbasidh41iicsea@gmail.com',
+        [email],
+        fail_silently=False,
+        )
+        response = redirect('/fpassOtp/?val='+encryppass+'&email='+email)
+        return response
+    else:
+        context = {
+        "status1": "Email is not registered!",
+        }
+        return render(request, "fpassword.html", context)
+    return render(request, "fpassword.html")
+
+def fpassOtp(request):
+    try:
+        val = request.GET['val']
+        email = request.GET['email']
+        context = {
+        "val": val,
+        "email": email,
+        }
+        return render(request, "fpassword-otp.html", context)
+    except KeyError:
+        response = redirect('/login/')
+        return response
+    return render(request, "fpassword-otp.html")
+
+def fpassOtpAction(request):
+    otp = request.POST.get('otp', False);
+    val = request.POST.get('val', False);
+    email = request.POST.get('email', False);
+    password_gen = hashlib.sha256(otp.encode())
+    encryppass=password_gen.hexdigest()
+    if(val==encryppass):
+        new = ''.join(random.sample('0123456789', 6))
+        newstr=str(new)
+        password_gen = hashlib.sha256(new.encode())
+        encryppass=password_gen.hexdigest()
+        Users.objects.filter(email=email).update(password=encryppass)
+        message="new password is: "+newstr
+        send_mail(
+        'Password Changed',
+        message,
+        'mohammedabdulbasidh41iicsea@gmail.com',
+        [email],
+        fail_silently=False,
+        )
+        context = {
+        "status": "Password sent to your email!",
+        }
+        return render(request, "fpassword.html", context)
+    else:
+        response = redirect('/fpassOtp/?val='+val+'?email='+email)
+        return response
+
+def testmail(request):
+    message="test"
+    send_mail(
+    'Subject here',
+    message,
+    'mohammedabdulbasidh41iicsea@gmail.com',
+    ['farz.basidh@gmail.com'],
+    fail_silently=False,
+    )
+    print("done")
+    return render(request, "login.html")

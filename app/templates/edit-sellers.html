@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="../css/style.css">
+
+    <title>Edit Supplier</title>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+  <div class="col">
+  <br><br>
+  <center>
+  <h3>Edit Supplier</h3>
+  </center>
+  </div>
+  </div>
+
+  <div class="row" align="center">
+  <div class="col">
+
+<form name="form" method="post" action="/editSupplierAction/">
+  {% csrf_token %}
+  {% for i in supplier %}
+<div class="form-group">
+</div>
+<div class="form-group">
+<input type="text" value="{{ i.supplier_id }}" disabled placeholder="Seller Name" required class="form-control w-50" />
+<input type="hidden" value="{{ i.supplier_id }}" name="seller-id" placeholder="Supplier Name" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" value="{{ i.sup_name }}" name="seller-name" placeholder="Supplier Phone Number" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" value="{{ i.phone }}" name="seller-phone" placeholder="Supplier Address" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" value="{{ i.address }}" name="seller-address" placeholder="Supplier Address" required class="form-control w-50" />
+</div>
+{% endfor %}
+<input name="submit" type="submit" value="Submit" class="btn btn-primary" />
+</form>
+<br />
+<p style="text-decoration:none;color:grey;">Back to <a style="text-decoration:none;color:grey;" href="/seller/"><b>Suppliers</b></a> or <a style="text-decoration:none;color:grey;" href="/dashboard/"><b>Dashboard</b></a></p>
+<br /><br /><br />
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>

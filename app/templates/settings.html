@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta charset="utf-8">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <title>Settings</title>
+</head>
+<body>
+
+<div class="container">
+<div class="row">
+  <div class="col">
+  <br><br>
+  <center>
+  <h3>Settings</h3>
+  </center>
+
+  </div>
+  </div>
+
+  <div class="row" align="center">
+  <div class="col">
+
+<form name="form" method="post" action="/settingsAction/">
+  <p style="color:green;">{{ status }}</p>
+  {% csrf_token %}
+<div class="form-group">
+</div>
+<div class="form-group">
+  {% for i in user %}
+<input type="hidden" name="id" value="{{i.id}}" placeholder="id" required class="form-control w-50" />
+<input name="username" value="{{i.username}}"placeholder="Username" required class="form-control w-50" />
+</div>
+<div class="form-group">
+<input type="text" value="{{i.email}}" name="email" placeholder="email" required class="form-control w-50" />
+</div>
+{% endfor %}
+<input name="submit" type="submit" value="Submit" class="btn btn-primary" /> &nbsp; <a href="/password/"><input name="change-password" type="button" value="Change Password" class="btn btn-info" /></a>
+</form>
+<br />
+<p><a style="text-decoration:none;color:grey;" href="/dashboard/">Back to <b>Dashboard</b></a></p>
+
+
+</div>
+</div>
+</div>
+
+</body>
+</html>
